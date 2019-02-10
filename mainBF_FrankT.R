@@ -22,7 +22,7 @@ NAI <- as.numeric(AI)
 NAI=NAI
 set.seed(NAI*1000)
 
-# Prior is always this (FIXED)
+# Prior for model 1
 b01=rnorm(N,0,SD)
 b11=rnorm(N,0,SD)
 b21=rnorm(N,0,SD)
@@ -33,10 +33,9 @@ b22=rnorm(N,0,SD)
 b32=rnorm(N,0,SD)
 Tau=c(runif(N/2,-0.99,-0.05),runif(N/2,0.05,0.99))
 
-# Change prior DRAWs for alpha (NOT normal, but two uniforms)
-
 theta1=data.frame(b01,b11,b21,b31,b02,b12,b22,b32,Tau,row.names=NULL)  #paricle set
 
+#Prior for model 2
 b01=rnorm(N,0,SD)
 b11=rnorm(N,0,SD)
 b21=rnorm(N,0,SD)
