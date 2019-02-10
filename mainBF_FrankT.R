@@ -33,9 +33,15 @@ b22=rnorm(N,0,SD)
 b32=rnorm(N,0,SD)
 Tau=c(runif(N/2,-0.99,-0.05),runif(N/2,0.05,0.99))
 
+<<<<<<< HEAD
 theta1=data.frame(b01,b11,b21,b31,b02,b12,b22,b32,Tau,row.names=NULL)  #paricle set
 
 # Prior for model 2
+=======
+theta1=data.frame(b01,b11,b21,b31,b02,b12,b22,b32,Tau,row.names=NULL)  
+
+#Prior for model 2
+>>>>>>> 14d7f70614f9797281ac6c178e744433700be889
 b01=rnorm(N,0,SD)
 b11=rnorm(N,0,SD)
 b21=rnorm(N,0,SD)
@@ -47,6 +53,10 @@ b32=rnorm(N,0,SD)
 
 theta2=data.frame(b01,b11,b21,b31,b02,b12,b22,b32,row.names=NULL) 
 
+<<<<<<< HEAD
+=======
+#particle set
+>>>>>>> 14d7f70614f9797281ac6c178e744433700be889
 theta=data.frame(theta1,theta2)
 
 Starting_designs=data.frame(X1=runif(250,-1,1),X2=runif(250,-1,1),X3=runif(250,-1,1)) #Starting design points in each iteration
