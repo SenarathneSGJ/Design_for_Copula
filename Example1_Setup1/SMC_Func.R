@@ -1,27 +1,23 @@
 
-SMC_Func=function(Starting_designs,theta,W,R)
+SMC_Func=function(T1,theta,W,R)
 {  
-  thetaPrior=theta # Drawn from prior distributions
-  
-  T1=nrow(Starting_designs)
-  N<-nrow(theta)
   datat=data.frame()
   prop_data=data.frame()
-  num_models=2
   ute_t=data.frame()
+  log_det=c()
   utility=matrix(ncol=3,nrow=T1)
+  N<-nrow(theta)
+  num_models=2
   LogZs = rep(0,num_models)  
   post_model_probs=data.frame(0.5,0.5)
   post_model_probs_all=data.frame()
   N1=500
   W3=data.frame(w31=c(rep((1/N1),N1)),w32=c(rep((1/N1),N1)))
-  log_det=c()
   
   for(t1 in 0:(T1-1))
   {
     xdata=c()
     ydata=c()
-    ################################################################################
     theta1s=(theta[,1:9])
     theta2s=(theta[,10:17])
     theta1s=theta1s[sample(nrow(theta1s),N1,prob=W[,1],replace=T), ]
@@ -35,20 +31,18 @@ SMC_Func=function(Starting_designs,theta,W,R)
     xdata=data.frame(opt_data$phase1.d)
     
     ute_t=rbind(ute_t,t(opt_data$phase1.trace))
-    ################################################################################
-    # Generate data from true model (xdata, true parameter values), stochastic
     
+    # Generate data from true model
     ydata=data.frame(response1(xdata=xdata),row.names=c("y1","y2"))
-    
-    ################################################################################
-    
+     
     prop_data= merge(xdata,t(ydata))
     datat=rbind(datat,prop_data)
     
     w1=exp(likelihood_m1(data=datat[t1+1,],para=theta[,1:9])) 
     w2=exp(likelihood_m2(data=datat[t1+1,],para=theta[,10:17])) 
     w=data.frame(w1,w2)
-    W<- w*W             # Unnormalised importance weights
+    # Unnormalised importance weights:
+    W<- w*W             
     
     #update the marginal likelihoods for each model
     LogZs = LogZs + log(colSums(W))
@@ -58,8 +52,8 @@ SMC_Func=function(Starting_designs,theta,W,R)
     post_model_probs = post_model_probs/sum(post_model_probs)
     post_model_probs_all = rbind(post_model_probs_all,post_model_probs)
     
-   
-    W <- W/colSums(W) # Normalised importance weights
+    # Normalised importance weights:
+    W <- W/colSums(W) 
     
     ESS= 1/(colSums(W^2))
  
