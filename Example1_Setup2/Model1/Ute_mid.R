@@ -51,7 +51,7 @@ ute_mid=function(designT, theta, W,post_model_probs,LogZs)
   
   #stable calculation of posterior probabilites from marginal likelihoods
   
-  crit_sum=crit[,1:4]+crit[,5:8]          #### Jagath:  I will look at this more closely once you have addressed the other issues.
+  crit_sum=crit[,1:4]+crit[,5:8]          
   crit_sum=data.frame(crit_sum,crit_sum)
   crit=crit/crit_sum
   
