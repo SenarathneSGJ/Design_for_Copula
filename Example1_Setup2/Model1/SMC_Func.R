@@ -44,7 +44,7 @@ SMC_Func=function(T1,theta,W,R)
     w2=exp(likelihood_m2(data=datat[t1+1,],para=theta[,10:16]))     
     w=data.frame(w1,w2)
     # Unnormalised importance weights:
-	W<- w*W             
+    W<- w*W             
     
     #update the marginal likelihoods for each model
     LogZs = LogZs + log(colSums(W))
@@ -54,7 +54,7 @@ SMC_Func=function(T1,theta,W,R)
     post_model_probs = post_model_probs/sum(post_model_probs)
     post_model_probs_all = rbind(post_model_probs_all,post_model_probs)
     # Normalised importance weights:
-    W <- W/colSums(W) 
+    W <- W/matrix(rep(colSums(W),each=N),nrow=N) 
     
     ESS= 1/(colSums(W^2))
  
