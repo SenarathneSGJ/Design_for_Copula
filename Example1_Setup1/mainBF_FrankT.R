@@ -29,13 +29,9 @@ b22=rnorm(N,0,SD)
 b32=rnorm(N,0,SD)
 Tau=c(runif(N/2,-0.99,-0.05),runif(N/2,0.05,0.99))
 
-theta1=data.frame(b01,b11,b21,b31,b02,b12,b22,b32,Tau,row.names=NULL)  #paricle set
+theta1=data.frame(b01,b11,b21,b31,b02,b12,b22,b32,Tau,row.names=NULL)  # Initial paricle set for model 1
 
 # Prior for model 2
-
-theta1=data.frame(b01,b11,b21,b31,b02,b12,b22,b32,Tau,row.names=NULL)  
-
-#Prior for model 2
 
 b01=rnorm(N,0,SD)
 b11=rnorm(N,0,SD)
@@ -46,9 +42,9 @@ b12=rnorm(N,0,SD)
 b22=rnorm(N,0,SD)
 b32=rnorm(N,0,SD)
 
-theta2=data.frame(b01,b11,b21,b31,b02,b12,b22,b32,row.names=NULL) 
+theta2=data.frame(b01,b11,b21,b31,b02,b12,b22,b32,row.names=NULL) # Initial paricle set for model 2
 
-#particle set
+#Initial particle set
 theta=data.frame(theta1,theta2)
 
 # Particle Weights
